@@ -28,4 +28,11 @@ public class BankAccountTest {
         assertEquals(account.viewBalance(), 500);
     }
 
+    @Test(expected=Error.class)
+    public void cannotWithdrawIfNotEnoughMoney() {
+        account.deposit(1000);
+        account.withdraw(1100);
+        assertThrows(Error.class, () -> account.withdraw(1100));
+    }
+
 }

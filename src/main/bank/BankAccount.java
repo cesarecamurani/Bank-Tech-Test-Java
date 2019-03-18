@@ -3,6 +3,11 @@ package bank;
 public class BankAccount{
 
     private int balance;
+    private void noCredit(int amount){
+        if(amount > this.balance){
+            throw new Error("Not enough credit!");
+        }
+    }
 
     BankAccount(int balance){
         this.balance = balance;
@@ -17,6 +22,7 @@ public class BankAccount{
     }
 
     void withdraw(int amount){
+        noCredit(amount);
         this.balance -= amount;
     }
 }
