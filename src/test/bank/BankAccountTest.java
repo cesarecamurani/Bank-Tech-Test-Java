@@ -17,8 +17,8 @@ public class BankAccountTest {
 
     @Test
     public void balanceShouldIncreaseWhenUserDeposits(){
-       account.deposit(500);
-       assertEquals(account.viewBalance(), 500);
+        account.deposit(500);
+        assertEquals(account.viewBalance(), 500);
     }
 
     @Test
