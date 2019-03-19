@@ -1,18 +1,28 @@
 package bank;
 
 import org.junit.*;
+import org.mockito.Mockito;
 
-import static org.hamcrest.Matchers.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
 import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class BankAccountTest {
 
     private BankAccount account;
+    private Transaction transaction;
+    private Date date;
+    private DateTime dt;
+    private List<Map<String, String>> transactions = new ArrayList<>();
 
     @Before
     public void setup(){
-        account = new BankAccount(0);
+        transaction = new Transaction(transactions, dt);
+        account = new BankAccount(0, transaction);
     }
 
     @Test

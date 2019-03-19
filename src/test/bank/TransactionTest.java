@@ -40,7 +40,6 @@ public class TransactionTest{
     @Test
     public void creditShouldAddCreditToStatementEx2() {
         transaction.credit(2000, 2000);
-        System.out.println(transactions.get(0));
         assertThat(transactions.get(0), IsMapContaining.hasEntry("date", "20/08/2018"));
         assertThat(transactions.get(0), IsMapContaining.hasEntry("credit", "2000"));
         assertThat(transactions.get(0), IsMapContaining.hasEntry("balance", "2000"));
@@ -50,7 +49,6 @@ public class TransactionTest{
     public void debitShouldAddDebitToStatementEx1() {
         transaction.credit(1000, 1000);
         transaction.debit(800, 200);
-        System.out.println(transactions.get(0));
         assertThat(transactions.get(0), IsMapContaining.hasEntry("date", "20/08/2018"));
         assertThat(transactions.get(0), IsMapContaining.hasEntry("debit", "800"));
         assertThat(transactions.get(0), IsMapContaining.hasEntry("balance", "200"));

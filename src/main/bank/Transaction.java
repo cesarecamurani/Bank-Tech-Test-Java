@@ -24,6 +24,7 @@ class Transaction{
         this.transactionCre.put("debit", "0");
         this.transactionCre.put("balance", balance.toString());
         this.transactions.add(0, transactionCre);
+
     }
 
     void debit(Integer amount, Integer balance){
