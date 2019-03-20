@@ -16,18 +16,19 @@ public class BankAccountTest {
     private BankAccount account;
     private Transaction transaction;
     private Date date;
-    private DateTime dt;
     private List<Map<String, String>> transactions = new ArrayList<>();
 
     @Before
     public void setup(){
-        transaction = new Transaction(transactions, dt);
+        transaction = new Transaction(transactions, date);
         account = new BankAccount(0, transaction);
-    }
+
+}
 
     @Test
     public void balanceShouldIncreaseWhenUserDeposits(){
         account.deposit(500);
+//        System.out.println(account.viewBalance());
         assertEquals(account.viewBalance(), 500);
     }
 
