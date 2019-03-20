@@ -28,7 +28,6 @@ public class BankAccountTest {
     @Test
     public void balanceShouldIncreaseWhenUserDeposits(){
         account.deposit(500);
-//        System.out.println(account.viewBalance());
         assertEquals(account.viewBalance(), 500);
     }
 

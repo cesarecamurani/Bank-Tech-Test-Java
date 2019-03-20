@@ -1,14 +1,16 @@
 package bank;
 
 import java.util.*;
+import java.text.SimpleDateFormat;
 
 class Transaction {
 
-    Date date;
+    private Date date;
+//    String formatDate = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
 
-    Map<String,String> transactionCre = new HashMap<>();
-    Map<String,String> transactionDeb = new HashMap<>();
-    List<Map<String , String>> transactions;
+    private Map<String,String> transactionCre = new HashMap<>();
+    private Map<String,String> transactionDeb = new HashMap<>();
+    private List<Map<String , String>> transactions;
 
     Transaction(List<Map<String , String>> transactions, Date date){
         this.transactions = transactions;

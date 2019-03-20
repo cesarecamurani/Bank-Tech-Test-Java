@@ -1,12 +1,10 @@
 package bank;
 
-import java.util.*;
-
 class BankAccount{
 
-    int balance;
-    Transaction transaction;
-    void noCredit(int amount){
+    private int balance;
+    private Transaction transaction;
+    private void noCredit(int amount){
         if(amount > this.balance){
             throw new Error ("Not enough credit!");
         }

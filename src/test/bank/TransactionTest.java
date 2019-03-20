@@ -9,9 +9,9 @@ import org.hamcrest.collection.IsMapContaining;
 
 public class TransactionTest{
 
-    Transaction transaction;
-    List<Map<String, String>> transactions;
-    Date date;
+    private Transaction transaction;
+    private List<Map<String, String>> transactions;
+    private Date date;
 
     @Before
     public void setup(){
