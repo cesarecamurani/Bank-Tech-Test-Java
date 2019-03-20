@@ -1,19 +1,18 @@
 package bank;
 
 import java.util.*;
-import java.text.SimpleDateFormat;
 
 class Transaction {
 
     private Date date;
-//    String formatDate = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
-
+//    private Statement statement;
     private Map<String,String> transactionCre = new HashMap<>();
     private Map<String,String> transactionDeb = new HashMap<>();
     private List<Map<String , String>> transactions;
 
     Transaction(List<Map<String , String>> transactions, Date date){
         this.transactions = transactions;
+//        this.statement = statement;
         this.date = date;
     }
 
@@ -33,4 +32,8 @@ class Transaction {
         this.transactionDeb.put("balance", String.valueOf(balance));
         this.transactions.add(0, transactionDeb);
     }
+
+//    void displayStatement(){
+//        this.statement.display(this.transactions);
+//    }
 }

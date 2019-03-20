@@ -10,6 +10,8 @@ import org.hamcrest.collection.IsMapContaining;
 public class TransactionTest{
 
     private Transaction transaction;
+    private String header;
+//    private Statement statement;
     private List<Map<String, String>> transactions;
     private Date date;
 

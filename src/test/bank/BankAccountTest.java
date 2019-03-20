@@ -15,11 +15,15 @@ public class BankAccountTest {
 
     private BankAccount account;
     private Transaction transaction;
+//    private Statement statement;
+    private String header;
     private Date date;
     private List<Map<String, String>> transactions = new ArrayList<>();
 
     @Before
     public void setup(){
+        header = "Date || Credit || Debit || Balance\n";
+//        statement = new Statement(header);
         transaction = new Transaction(transactions, date);
         account = new BankAccount(0, transaction);
 
