@@ -34,6 +34,17 @@ public class FeatureTest {
     }
 
     @Test
+    public void featureTestForWithdrawFunctionality(){
+        account.deposit(date, 2000.00);
+        account.deposit(date, 1500.00);
+        account.deposit(date, 3000.00);
+        account.withdraw(date, 2000.00);
+        account.withdraw(date, 500.00);
+        account.withdraw(date, 3000.00);
+        assertEquals("20/08/2018 || || 3000.0 || 1000.0\n", transaction.returnTransactions().get(0));
+    }
+
+    @Test
     public void featureTestForPrintStatementFunctionality(){
 
     }
