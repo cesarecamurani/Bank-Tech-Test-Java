@@ -58,6 +58,16 @@ public class FeatureTest {
 
     @Test
     public void featureTestForPrintStatementFunctionality(){
-
+        account.deposit(date, 2000.00);
+        account.deposit(date, 1500.00);
+        account.deposit(date, 3000.00);
+        account.withdraw(date, 2000.00);
+        account.withdraw(date, 500.00);
+        assertEquals(statement.display(transactions), "Date || Credit || Debit || Balance\n" +
+                                                            "20/08/2018 || 2000.0 || || 2000.0\n" +
+                                                            "20/08/2018 || 1500.0 || || 3500.0\n" +
+                                                            "20/08/2018 || 3000.0 || || 6500.0\n" +
+                                                            "20/08/2018 || || 2000.0 || 4500.0\n" +
+                                                            "20/08/2018 || || 500.0 || 4000.0\n");
     }
 }
