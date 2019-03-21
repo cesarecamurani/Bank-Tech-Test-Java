@@ -1,6 +1,6 @@
 package bank;
 
-import java.util.*;
+import java.util.Date;
 
 class BankAccount{
 
@@ -16,15 +16,15 @@ class BankAccount{
         return this.balance;
     }
 
-    void deposit(Date date, double amount) {
+    void deposit(double amount) {
         this.balance += amount;
-        this.transaction.credit(date, amount, this.balance);
+        this.transaction.credit(new Date(), amount, this.balance);
     }
 
-    void withdraw(Date date, double amount){
+    void withdraw(double amount){
         noCredit(amount);
         this.balance -= amount;
-        this.transaction.debit(date, amount, this.balance);
+        this.transaction.debit(new Date(), amount, this.balance);
     }
 
     private void noCredit(double amount){
