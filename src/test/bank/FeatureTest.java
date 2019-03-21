@@ -44,6 +44,18 @@ public class FeatureTest {
         assertEquals("20/08/2018 || || 3000.0 || 1000.0\n", transaction.returnTransactions().get(0));
     }
 
+    @Test(expected=Error.class)
+    public void featureTestForNoCreditScenario(){
+        account.deposit(date, 2000.00);
+        account.deposit(date, 1500.00);
+        account.deposit(date, 3000.00);
+        account.withdraw(date, 2000.00);
+        account.withdraw(date, 500.00);
+        account.withdraw(date, 3000.00);
+        account.withdraw(date, 3000.00);
+        assertThrows(Error.class, () -> account.withdraw(date, 3000.00));
+    }
+
     @Test
     public void featureTestForPrintStatementFunctionality(){
 
