@@ -47,6 +47,13 @@ public class BankAccountTest {
         account.withdraw(1100.00);
         assertThrows(Error.class, () -> account.withdraw(1100.00));
     }
+    @Test(expected=Error.class)
+    public void cannotWithdrawIflimitHasBeenReached() {
+        account.deposit(2000.00);
+        account.withdraw(700.00);
+        account.withdraw(500.00);
+        assertThrows(Error.class, () -> account.withdraw(500.00));
+    }
 
     @Test
     public void printStatementShouldPrintTheStatement() {

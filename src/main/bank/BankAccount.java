@@ -5,6 +5,7 @@ import java.util.Date;
 class BankAccount{
 
     private double balance;
+    private double limit = 2500.00;
     private Transaction transaction;
 
     BankAccount(double balance, Transaction transaction){
@@ -23,6 +24,7 @@ class BankAccount{
 
     void withdraw(double amount){
         noCredit(amount);
+        checkLimit(amount);
         this.balance -= amount;
         this.transaction.debit(new Date(), amount, this.balance);
     }
@@ -30,6 +32,12 @@ class BankAccount{
     private void noCredit(double amount){
         if(amount > this.balance){
             throw new Error ("Not enough credit!");
+        }
+    }
+
+    private void checkLimit(double amount){
+        if(amount > limit){
+            throw new Error ("You reached your daily limit!");
         }
     }
 

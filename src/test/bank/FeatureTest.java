@@ -40,21 +40,21 @@ public class FeatureTest {
             account.deposit(2000.00);
             account.deposit(1500.00);
             account.deposit(3000.00);
-            account.withdraw(2000.00);
+            account.withdraw(1000.00);
             account.withdraw(500.00);
-            account.withdraw(3000.00);
-            assertEquals(testDate + " || || 3000.0 || 1000.0\n", transaction.returnTransactions().get(0));
+            account.withdraw(700.00);
+            assertEquals(testDate + " || || 700.0 || 4300.0\n", transaction.returnTransactions().get(0));
         }
 
         @Test(expected=Error.class)
         public void featureTestForNoCreditScenario(){
-            account.deposit(2000.00);
-            account.deposit(1500.00);
-            account.deposit(3000.00);
-            account.withdraw(2000.00);
+            account.deposit(1000.00);
+            account.deposit(500.00);
+            account.deposit(300.00);
+            account.withdraw(200.00);
             account.withdraw(500.00);
-            account.withdraw(3000.00);
-            account.withdraw(3000.00);
+            account.withdraw(1000.00);
+            account.withdraw(200.00);
             assertThrows(Error.class, () -> account.withdraw(3000.00));
         }
 
