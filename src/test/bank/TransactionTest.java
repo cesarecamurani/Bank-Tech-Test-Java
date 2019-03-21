@@ -33,14 +33,14 @@ public class TransactionTest{
     public void debitShouldAddDebitToStatementEx1() {
         transaction.credit(date, 1000.0, 1000.0);
         transaction.debit(date, 500.0, 500.0);
-        assertEquals("20/08/2018 || || 500.0 || 500.0\n", transaction.returnTransactions().get(1));
+        assertEquals("20/08/2018 || || 500.0 || 500.0\n", transaction.returnTransactions().get(0));
     }
 
     @Test
     public void debitShouldAddDebitToStatementEx2() {
         transaction.credit(date, 2000.0, 2000.0);
         transaction.debit(date, 1500.0, 500.0);
-        assertEquals("20/08/2018 || || 1500.0 || 500.0\n", transaction.returnTransactions().get(1));
+        assertEquals("20/08/2018 || || 1500.0 || 500.0\n", transaction.returnTransactions().get(0));
     }
 
     @Test

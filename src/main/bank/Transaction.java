@@ -16,6 +16,7 @@ class Transaction {
     }
 
     ArrayList returnTransactions() {
+        Collections.reverse(this.transactions);
         return this.transactions;
     }
 
