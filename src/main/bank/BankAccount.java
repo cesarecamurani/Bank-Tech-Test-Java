@@ -1,32 +1,39 @@
 package bank;
 
+import java.util.*;
+
 class BankAccount{
 
-    private int balance;
+    private double balance;
     private Transaction transaction;
-    private void noCredit(int amount){
+
+    BankAccount(double balance, Transaction transaction){
+        this.balance = balance;
+        this.transaction = transaction;
+    }
+
+    double viewBalance(){
+        return this.balance;
+    }
+
+    void deposit(Date date, double amount) {
+        this.balance += amount;
+        this.transaction.credit(date, amount, this.balance);
+    }
+
+    void withdraw(Date date, double amount){
+        noCredit(amount);
+        this.balance -= amount;
+        this.transaction.debit(date, amount, this.balance);
+    }
+
+    private void noCredit(double amount){
         if(amount > this.balance){
             throw new Error ("Not enough credit!");
         }
     }
 
-    BankAccount(int balance, Transaction transaction){
-        this.balance = balance;
-        this.transaction = transaction;
-    }
-
-    int viewBalance(){
-        return this.balance;
-    }
-
-    void deposit(int amount) {
-        this.balance += amount;
-        this.transaction.credit(amount, this.balance);
-    }
-
-    void withdraw(int amount){
-        noCredit(amount);
-        this.balance -= amount;
-        this.transaction.debit(amount, this.balance);
+    String printStatement(){
+        return this.transaction.displayStatement();
     }
 }

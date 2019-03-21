@@ -1,67 +1,56 @@
 package bank;
 
 import org.junit.*;
-import org.mockito.Mockito;
-
 import java.util.*;
 import static org.junit.Assert.*;
-import org.hamcrest.collection.IsMapContaining;
 
 public class TransactionTest{
 
     private Transaction transaction;
-    private String header;
-//    private Statement statement;
-    private List<Map<String, String>> transactions;
     private Date date;
 
     @Before
     public void setup(){
-
-        date = Mockito.mock(Date.class);
-        Mockito.when(date.toString())
-                .thenReturn("20/08/2018");
-
-        transactions = new ArrayList<>();
-        transaction = new Transaction(transactions, date);
+        Statement statement = new Statement();
+        ArrayList transactions = new ArrayList<>();
+        date = new GregorianCalendar(2018, Calendar.AUGUST, 20).getTime();
+        transaction = new Transaction(transactions, statement);
     }
 
     @Test
     public void creditShouldAddCreditToStatementEx1() {
-        transaction.credit(1000, 1000);
-        assertThat(transactions.get(0), IsMapContaining.hasEntry("date", "20/08/2018"));
-        assertThat(transactions.get(0), IsMapContaining.hasEntry("credit", "1000"));
-        assertThat(transactions.get(0), IsMapContaining.hasEntry("debit", "0"));
-        assertThat(transactions.get(0), IsMapContaining.hasEntry("balance", "1000"));
+        transaction.credit(date, 1000.0, 1000.0);
+        assertEquals("20/08/2018 || 1000.0 || || 1000.0\n", transaction.returnTransactions().get(0));
     }
 
     @Test
     public void creditShouldAddCreditToStatementEx2() {
-        transaction.credit(2000, 2000);
-        assertThat(transactions.get(0), IsMapContaining.hasEntry("date", "20/08/2018"));
-        assertThat(transactions.get(0), IsMapContaining.hasEntry("credit", "2000"));
-        assertThat(transactions.get(0), IsMapContaining.hasEntry("debit", "0"));
-        assertThat(transactions.get(0), IsMapContaining.hasEntry("balance", "2000"));
+        transaction.credit(date, 2000.0, 2000.0);
+        assertEquals("20/08/2018 || 2000.0 || || 2000.0\n", transaction.returnTransactions().get(0));
     }
 
     @Test
     public void debitShouldAddDebitToStatementEx1() {
-        transaction.credit(1000, 1000);
-        transaction.debit(800, 200);
-        assertThat(transactions.get(0), IsMapContaining.hasEntry("date", "20/08/2018"));
-        assertThat(transactions.get(0), IsMapContaining.hasEntry("credit", "0"));
-        assertThat(transactions.get(0), IsMapContaining.hasEntry("debit", "800"));
-        assertThat(transactions.get(0), IsMapContaining.hasEntry("balance", "200"));
+        transaction.credit(date, 1000.0, 1000.0);
+        transaction.debit(date, 500.0, 500.0);
+        assertEquals("20/08/2018 || || 500.0 || 500.0\n", transaction.returnTransactions().get(1));
     }
 
     @Test
     public void debitShouldAddDebitToStatementEx2() {
-        transaction.credit(2000, 2000);
-        transaction.debit(1500, 500);
-        assertThat(transactions.get(0), IsMapContaining.hasEntry("date", "20/08/2018"));
-        assertThat(transactions.get(0), IsMapContaining.hasEntry("credit", "0"));
-        assertThat(transactions.get(0), IsMapContaining.hasEntry("debit", "1500"));
-        assertThat(transactions.get(0), IsMapContaining.hasEntry("balance", "500"));
+        transaction.credit(date, 2000.0, 2000.0);
+        transaction.debit(date, 1500.0, 500.0);
+        assertEquals("20/08/2018 || || 1500.0 || 500.0\n", transaction.returnTransactions().get(1));
+    }
+
+    @Test
+    public void displayStatementShouldDisplayTheStatement() {
+        transaction.credit(date, 1000.0, 1000.0);
+        transaction.debit(date, 500.0, 500.0);
+        assertEquals(transaction.displayStatement(), "Date || Credit || Debit || Balance\n" +
+                                                           "20/08/2018 || 1000.0 || || 1000.0\n" +
+                                                           "20/08/2018 || || 500.0 || 500.0\n");
+
     }
 }
 

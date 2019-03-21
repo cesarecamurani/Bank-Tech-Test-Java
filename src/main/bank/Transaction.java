@@ -1,39 +1,46 @@
 package bank;
 
 import java.util.*;
+import java.text.SimpleDateFormat;
 
 class Transaction {
 
-    private Date date;
-//    private Statement statement;
-    private Map<String,String> transactionCre = new HashMap<>();
-    private Map<String,String> transactionDeb = new HashMap<>();
-    private List<Map<String , String>> transactions;
+    ArrayList transactions;
+    Statement statement;
+    SimpleDateFormat dateFormatter;
+    String dateNow;
 
-    Transaction(List<Map<String , String>> transactions, Date date){
+    Transaction(ArrayList transactions, Statement statement){
         this.transactions = transactions;
-//        this.statement = statement;
-        this.date = date;
+        this.statement = statement;
     }
 
-    void credit(int amount, int balance){
-        this.transactionCre.put("date", String.valueOf(this.date));
-        this.transactionCre.put("credit", String.valueOf(amount));
-        this.transactionCre.put("debit", "0");
-        this.transactionCre.put("balance", String.valueOf(balance));
-        this.transactions.add(0, transactionCre);
+    ArrayList returnTransactions() {
+        return this.transactions;
+    }
+
+    void credit(Date date, double amount, double balance){
+        formatDate(date);
+        this.transactions.add(dateNow + " || " +
+                              amount + " || || " +
+                              balance + "\n");
 
     }
 
-    void debit(int amount, int balance){
-        this.transactionDeb.put("date", String.valueOf(this.date));
-        this.transactionDeb.put("credit", "0");
-        this.transactionDeb.put("debit", String.valueOf(amount));
-        this.transactionDeb.put("balance", String.valueOf(balance));
-        this.transactions.add(0, transactionDeb);
+    void debit(Date date, double amount, double balance){
+        formatDate(date);
+        this.transactions.add(dateNow + " || || " +
+                              amount + " || " +
+                              balance + "\n");
     }
 
-//    void displayStatement(){
-//        this.statement.display(this.transactions);
-//    }
+    private String formatDate(Date date){
+        dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
+        dateNow = dateFormatter.format(date);
+        return dateNow;
+    }
+
+    String displayStatement(){
+        return this.statement.display(this.transactions);
+    }
 }
